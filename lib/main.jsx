@@ -18,12 +18,12 @@ class Main extends React.Component {
     if (!localStorage.city) localStorage.city = '""'
     const savedCity = JSON.parse(localStorage.city);
     if (savedCity) {
-      this.setState({location: savedCity})
+      this.setState({location: savedCity});
+      this.getWeatherData();
     }
     else {
        this.setState({location: ''})
     }
-    this.getWeatherData();
   }
 
   getWeatherData() {
@@ -37,9 +37,10 @@ class Main extends React.Component {
     this.setState({location: e.target.value})
   }
 
-  saveLocation(){
-    this.setState({location: this.state.location});
-    localStorage.city = JSON.stringify(this.state.location)
+  saveLocation(e){
+    this.handleChange(e);
+    localStorage.city = JSON.stringify(this.state.location);
+    this.getWeatherData();
   }
 
   render() {
