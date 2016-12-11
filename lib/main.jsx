@@ -15,10 +15,8 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.city) {
-      localStorage.city = ''
-    }
-    const savedCity = JSON.parse(localStorage.city)
+    if (!localStorage.city) localStorage.city = '""'
+    const savedCity = JSON.parse(localStorage.city);
     if (savedCity) {
       this.setState({location: savedCity})
     }
