@@ -15,9 +15,17 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    // const savedLocation = JSON.parse(localStorage.city);
-    // console.log(localStorage.city)
-    // this.getState({city: savedLocation})
+    if (!localStorage.city) {
+      localStorage.city = ''
+    }
+    const savedCity = JSON.parse(localStorage.city)
+    if (savedCity) {
+      this.setState({location: savedCity})
+    }
+    else {
+       this.setState({location: ''})
+    }
+    this.getWeatherData();
   }
 
   getWeatherData() {
@@ -32,9 +40,8 @@ class Main extends React.Component {
   }
 
   saveLocation(){
-    this.getWeatherData();
-    this.setState({city: this.state.location});
-  //  localStorage.city = JSON.stringify(this.state.city)
+    this.setState({location: this.state.location});
+    localStorage.city = JSON.stringify(this.state.location)
   }
 
   render() {
