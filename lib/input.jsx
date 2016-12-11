@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-// class Input extends React.Component{
+class Input extends React.Component{
 //   // constructor(){
 //   //   super();
 //   //   if(!localStorage.city){localStorage.city = '[]'}
@@ -14,11 +14,13 @@ const ReactDOM = require('react-dom');
 //   //   }
 //   // }
 //
-//   render(){
-//     return(
-//
-//     )
-//   }
-// }
-//
-// module.exports = Input
+  render (input){
+    return(
+      <input className='input-location'
+              placeholder='city'
+              onChange={(e) => this.props.onChange(e)}/>
+    )
+  }
+}
+
+module.exports = Input

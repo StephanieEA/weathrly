@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
 const WeatherDisplay = require('./weatherdisplay');
-//const Input = require('./input')
+const Input = require('./input')
 
 class Main extends React.Component {
   constructor (){
@@ -27,6 +27,10 @@ class Main extends React.Component {
       })
   }
 
+  handleChange(e) {
+    this.setState({location: e.target.value})
+  }
+
   saveLocation(){
     this.getWeatherData();
     this.setState({city: this.state.location});
@@ -38,12 +42,10 @@ class Main extends React.Component {
       <section className ='app'>
         <h1>Welcome!!!</h1>
         <h2>Location</h2>
-        <input className='input-location'
-              placeholder ='location'
-              value = { this.state.location }
-              onChange={(e) => {this.setState({location: e.target.value})}}/>
+        <Input value = { this.state.location }
+              onChange={(e) => this.handleChange(e)} />
         <button className='submit-location'
-                onClick={(e)=> {this.saveLocation(e)}}>
+                onClick={(e)=> this.saveLocation(e)}>
                 Submit
         </button>
         <WeatherDisplay display={this.state.weather}
