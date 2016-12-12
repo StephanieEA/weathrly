@@ -9,38 +9,62 @@ class Main extends React.Component {
   constructor (){
     super();
     this.state = {
+      weather: [],
       location: '',
-      date: [],
+      days: [],
+      week: [],
     }
   }
 
   componentDidMount() {
+      this.getLocation();
+      this.getWeather();
+  }
+
+  getLocation() {
     if (!localStorage.city) localStorage.city = '""'
     const savedCity = JSON.parse(localStorage.city);
     if (savedCity) {
       this.setState({location: savedCity});
-      this.getWeatherData();
     }
     else {
-       this.setState({location: ''})
+      this.setState({location: ''})
     }
   }
 
-  getWeatherData() {
-      $.get('http://weatherly-api.herokuapp.com/api/weather', (response) => {
-        this.setState({weather: response})
-        console.log(this.state.weather)
-      })
+  getWeather(weather) {
+    $.get('http://weatherly-api.herokuapp.com/api/weather', (response) => {
+      this.setState({weather: response});
+      this.setDays(response);
+      this.setWeek(response);
+      console.log(this.state.week)
+    })
   }
+
+  setDays(weather) {
+    let weatherDays = weather.map((dailyData) => dailyData.date);
+    if (weather){
+      this.setState({days: weatherDays})
+    }
+    else{
+      this.setState({days: []});
+    }
+  }
+
+  setWeek(weather) {
+    const weekWeather = weather.slice(0,7);
+    this.setState({week: weekWeather});
+  }
+
 
   handleChange(e) {
     this.setState({location: e.target.value})
   }
 
   saveLocation(e){
-    this.handleChange(e);
+    this.setState({location: this.state.location});
     localStorage.city = JSON.stringify(this.state.location);
-    this.getWeatherData();
+    this.getWeather();
   }
 
   render() {
@@ -55,7 +79,9 @@ class Main extends React.Component {
                 Submit
         </button>
         <WeatherDisplay display={this.state.weather}
-                        location ={this.state.location} />
+                        location ={this.state.location}
+                        daysplay ={this.state.days}
+                        />
       </section>
     )
   }
