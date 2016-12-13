@@ -4,11 +4,10 @@ class DailyDisplay extends React.Component {
 
   render() {
     let dayArray = this.props.display;
-    if (dayArray) {
-      dayArray = dayArray.filter((dailyData) =>
+    dayArray = dayArray.filter((dailyData) =>
         dailyData.location === this.props.location);
-      dayArray = dayArray.slice(0, 7);
-      dayArray = dayArray.map((data, index) =>
+    dayArray = dayArray.slice(0, 7);
+    dayArray = dayArray.map((data, index) =>
         (<article key={index}>
             <ul>
               <li>{data.date}</li>
@@ -19,7 +18,7 @@ class DailyDisplay extends React.Component {
         </article>
         )
       );
-    }
+
     return (
       <section>
         <h3>Weekly Forecast</h3>
