@@ -45,10 +45,8 @@ class Main extends React.Component {
     const realCity = this.state.weather.filter((data) => data.location === inputCity);
     if (realCity) {
       this.setState({ location: inputCity });
-    } else {
-      alert('fake city fool');
     }
-    localStorage.city = JSON.stringify(this.state.temporary);
+    localStorage.city = JSON.stringify(inputCity);
     this.getWeather();
   }
 
@@ -62,6 +60,7 @@ class Main extends React.Component {
         <Submit saveLocation={ this.saveLocation.bind(this) }/>
         <WeatherDisplay display={this.state.weather}
                         location ={this.state.location}
+                        temporary ={this.state.temporary}
                       />
       </section>
     );
