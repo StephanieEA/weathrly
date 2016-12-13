@@ -11,11 +11,10 @@ class Main extends React.Component {
     super();
     this.state = {
       weather: [],
-      location: '',
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getLocation();
     this.getWeather();
   }
@@ -25,8 +24,6 @@ class Main extends React.Component {
     const savedCity = JSON.parse(localStorage.city);
     if (savedCity) {
       this.setState({ location: savedCity });
-    } else {
-      this.setState({ location: '' });
     }
   }
 
@@ -45,8 +42,8 @@ class Main extends React.Component {
     const realCity = this.state.weather.filter((data) => data.location === inputCity);
     if (realCity) {
       this.setState({ location: inputCity });
+      localStorage.city = JSON.stringify(inputCity);
     }
-    localStorage.city = JSON.stringify(inputCity);
     this.getWeather();
   }
 
