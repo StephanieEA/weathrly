@@ -1,10 +1,10 @@
-$background-color: 'magenta';
+$pop-color: darkturquoise;
 $main-font: Helvetica, sans-serif;
 
 body {
   font-family: Helvetica;
   background-color: black;
-  color: darkturquoise;
+  color: $pop-color;
   text-align: center;
 }
 
@@ -13,7 +13,7 @@ article {
 }
 
 button {
-  background-color: darkturquoise;
+  background-color: $pop-color;
   margin: 10px;
 }
 

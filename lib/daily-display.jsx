@@ -21,10 +21,10 @@ class DailyDisplay extends React.Component {
       );
     }
     return (
-      <article>
+      <section>
         <h3>Weekly Forecast</h3>
         {dayArray}
-      </article>
+      </section>
     );
   }
 }
