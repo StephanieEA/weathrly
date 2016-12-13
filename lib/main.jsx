@@ -4,6 +4,7 @@ const $ = require('jquery');
 
 const WeatherDisplay = require('./weatherdisplay');
 const Input = require('./input');
+const Submit = require('./submit');
 
 class Main extends React.Component {
   constructor() {
@@ -40,7 +41,13 @@ class Main extends React.Component {
   }
 
   saveLocation() {
-    this.setState({ location: this.state.temporary });
+    const inputCity = this.state.temporary;
+    const realCity = this.state.weather.filter((data) => data.location === inputCity);
+    if (realCity) {
+      this.setState({ location: inputCity });
+    } else {
+      alert('fake city fool');
+    }
     localStorage.city = JSON.stringify(this.state.temporary);
     this.getWeather();
   }
@@ -48,17 +55,13 @@ class Main extends React.Component {
   render() {
     return (
       <section className ='app'>
-        <h1>Welcome!!!</h1>
+        <h1>Weathrly </h1>
         <h2>Location</h2>
         <Input value = { this.state.location }
               onChange={(e) => this.handleChange(e)} />
-        <button className='submit-location'
-                onClick={(e) => this.saveLocation(e)}>
-                Submit
-        </button>
+        <Submit saveLocation={ this.saveLocation.bind(this) }/>
         <WeatherDisplay display={this.state.weather}
                         location ={this.state.location}
-                        week ={this.state.week}
                       />
       </section>
     );

@@ -1,27 +1,31 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 class DailyDisplay extends React.Component {
 
   render() {
-    let dayArray = this.props.week;
-    console.log(this.props.week)
+    let dayArray = this.props.display;
     if (dayArray) {
-      dayArray = dayArray.map(function(data, index){
-        return (<article key={index}>
-        {data.date}
-        {data.weatherType.type}
-        {data.temp.high}
-        {data.temp.low}
+      dayArray = dayArray.filter((dailyData) =>
+        dailyData.location === this.props.location);
+      dayArray = dayArray.slice(0, 7);
+      dayArray = dayArray.map((data, index) =>
+        (<article key={index}>
+            <ul>
+              <li>{data.date}</li>
+              <li>{data.weatherType.type}</li>
+              <li>High of {data.temp.high}</li>
+              <li>Low of {data.temp.low}</li>
+            </ul>
         </article>
         )
-      })
+      );
     }
     return (
       <article>
+        <h3>Weekly Forecast</h3>
         {dayArray}
       </article>
-    )
+    );
   }
 }
-module.exports = DailyDisplay
+module.exports = DailyDisplay;

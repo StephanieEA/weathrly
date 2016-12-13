@@ -1,0 +1,35 @@
+$background-color: 'magenta';
+$main-font: Helvetica, sans-serif;
+
+body {
+  font-family: Helvetica;
+  background-color: black;
+  color: darkturquoise;
+  text-align: center;
+}
+
+article {
+  display: inline-block;
+}
+
+button {
+  background-color: darkturquoise;
+  margin: 10px;
+}
+
+input {
+  font-size: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+h2 {
+  display: inline-block;
+  padding-right: 20px;
+}
