@@ -11,12 +11,10 @@ class Main extends React.Component {
     this.state = {
       weather: [],
       location: '',
-      days: [],
-      week: [],
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getLocation();
     this.getWeather();
   }
@@ -43,7 +41,7 @@ class Main extends React.Component {
 
   saveLocation() {
     this.setState({ location: this.state.temporary });
-    localStorage.city = JSON.stringify(this.state.location);
+    localStorage.city = JSON.stringify(this.state.temporary);
     this.getWeather();
   }
 
