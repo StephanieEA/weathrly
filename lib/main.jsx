@@ -60,9 +60,9 @@ class Main extends React.Component {
                 location={this.state.location}
                 display ={ this.state.weather }
               />
-        <WeatherDisplay display={this.state.weather}
+        {/* <WeatherDisplay display={this.state.weather}
                         location ={this.state.location}
-        />
+        /> */}
       </section>
     );
   }
