@@ -42,8 +42,10 @@ class Main extends React.Component {
     const realCity = this.state.weather.filter((data) => data.location === inputCity);
     if (realCity) {
       this.setState({ location: inputCity });
-      localStorage.city = JSON.stringify(inputCity);
+    } else {
+      this.setState({ location: '' });
     }
+    localStorage.city = JSON.stringify(inputCity);
     this.getWeather();
   }
 
@@ -52,7 +54,7 @@ class Main extends React.Component {
       <section className ='app'>
         <h1>Weathrly </h1>
         <h2>Location</h2>
-        <Input value = { this.state.location }
+        <Input value = { this.state.temporary }
               onChange={(e) => this.handleChange(e)} />
         <Submit saveLocation={ this.saveLocation.bind(this) }/>
         <WeatherDisplay display={this.state.weather}

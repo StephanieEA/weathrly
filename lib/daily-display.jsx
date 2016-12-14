@@ -18,13 +18,12 @@ class DailyDisplay extends React.Component {
         </article>
         )
       );
-
     return (
       <section>
-        <h3>Weekly Forecast</h3>
         {dayArray}
       </section>
     );
   }
 }
+
 module.exports = DailyDisplay;
